@@ -6,9 +6,7 @@ import {
   List,
   Typography,
   Divider,
-  Badge,
   ListItem,
-  ListItemIcon,
   ListItemText
 } from '@material-ui/core';
 import clsx from 'clsx';
