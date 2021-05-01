@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import clsx from 'clsx';
 import { useStyles } from './styles';
-import { routes } from '../routes';
+import { routes } from '../../routes';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 
@@ -53,6 +53,7 @@ const Sidebar = ({ title }: { title: string }) => {
         <List>
           {routes.map(route => (
             <ListItem
+              key={route.id}
               button
               selected={history.location.pathname === route.url}
               component={props => <Link to={route.url} {...props} />}

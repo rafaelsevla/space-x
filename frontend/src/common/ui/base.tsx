@@ -1,14 +1,16 @@
 import React, { PropsWithChildren } from 'react'
 import t from 'prop-types'
-import { Container, CssBaseline } from '@material-ui/core'
+import { Container, CssBaseline, LinearProgress } from '@material-ui/core'
 import Sidebar from './sidebar'
 import { useStyles } from './styles'
+import { AsyncData } from 'common/async-data'
 
 interface Props {
   title: string;
+  data: AsyncData<any>
 }
 
-const Base = ({ children, title }: PropsWithChildren<Props>) => {
+const Base = ({ children, title, data }: PropsWithChildren<Props>) => {
   const classes = useStyles();
 
   return (
@@ -18,9 +20,13 @@ const Base = ({ children, title }: PropsWithChildren<Props>) => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
-          <>
-            {children}
-          </>
+          {data.status === 'loading' && <LinearProgress />}
+          {data.status === 'error' && <h1>Um erro aconteceu ao carregar, tente novamente.</h1>}
+          {data.status === 'loaded' && (
+            <>
+              {children}
+            </>
+          )}
         </Container>
       </main>
     </div>

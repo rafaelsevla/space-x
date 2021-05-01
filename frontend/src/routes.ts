@@ -6,27 +6,27 @@ export const UPCOMING_LAUNCHES = '/upcoming-launches';
 export const LAST_LAUNCH = '/last-launch';
 export const LATEST_LAUNCHES = '/latest-launches';
 
-const HomePage = lazy(() => import('./home'))
+const HomePage = lazy(() => import('./home'));
 const UpcomingLaunchesPage = lazy(() => import('./upcoming-launches'));
 
 export const routes: {
   id: number;
   title: string;
   url: string;
-  children: () => React.LazyExoticComponent<() => JSX.Element>;
+  children: any
 }[] = [
   {
     id: 1,
     title: 'HOME',
     url: HOME,
-    children: () => HomePage
+    children: HomePage
   },
-  {
-    id: 2,
-    title: 'PRÓXIMOS LANÇAMENTOS',
-    url: UPCOMING_LAUNCHES,
-    children: () => UpcomingLaunchesPage
-  },
+  // {
+  //   id: 2,
+  //   title: 'PRÓXIMOS LANÇAMENTOS',
+  //   url: UPCOMING_LAUNCHES,
+  //   children: () => UpcomingLaunchesPage
+  // },
   // {
   //   id: 3,
   //   title: 'ÚLTIMO LANÇAMENTO',
@@ -37,4 +37,4 @@ export const routes: {
   //   title: 'ÚLTIMOS_LANÇAMENTOS',
   //   url: LATEST_LAUNCHES
   // },
-];
+]
