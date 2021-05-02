@@ -42,7 +42,7 @@ export default function PastLaunches () {
 
   useEffect(() => {
     fetchPastLaunches(paginationOffset);
-  }, []);
+  }, [ paginationOffset ]);
 
   function onPagination (action: 'next' | 'previous') {
     let newPaginationOffset;
@@ -51,7 +51,6 @@ export default function PastLaunches () {
     } else { // previous pagination
       newPaginationOffset = paginationOffset - 10;
     }
-    fetchPastLaunches(newPaginationOffset);
     setPaginationOffset(newPaginationOffset)
   }
 

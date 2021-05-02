@@ -59,7 +59,7 @@ export default function LatestLaunches () {
             >
             {latestLaunch.data.rocket.flickr_images.map(imageUrl => (
               <Grid item xs={4}>
-                <img src={imageUrl} style={{ width: 500, marginRight: 200 }} />
+                <img src={imageUrl} style={{ width: 500, marginRight: 200 }} alt="Rocket from space-x" />
               </Grid>
             ))}
             </Carousel>
@@ -68,7 +68,7 @@ export default function LatestLaunches () {
                 value={carouselDotsValue}
                 onChange={onChange}
                 thumbnails={latestLaunch.data.rocket.flickr_images.map(imageUrl => (
-                  <img src={imageUrl} style={{ width: 100 }} />
+                  <img src={imageUrl} style={{ width: 100 }} alt="Rocket from space-x on thumbnail" />
                 ))}
               />
             </Grid>

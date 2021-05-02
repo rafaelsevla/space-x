@@ -31,7 +31,7 @@ export default function UpcomingLaunches () {
     try {
       setUpcomingLaunches({ status: 'loading' })
       const response: { data: { launches: Launch[] } } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/v1/launches/upcoming?offset=${paginationOffset}&limit=12`
+        `${process.env.REACT_APP_API_URL}/v1/launches/upcoming?offset=${offset}&limit=12`
       );
       setUpcomingLaunches({ status: 'loaded', data: response.data.launches });
     } catch (err) {
@@ -41,7 +41,7 @@ export default function UpcomingLaunches () {
 
   useEffect(() => {
     fetchUpcomingLaunches(paginationOffset);
-  }, []);
+  }, [ paginationOffset ]);
 
   function onPagination (action: 'next' | 'previous') {
     let newPaginationOffset;
@@ -50,7 +50,6 @@ export default function UpcomingLaunches () {
     } else { // previous pagination
       newPaginationOffset = paginationOffset - 10;
     }
-    fetchUpcomingLaunches(newPaginationOffset);
     setPaginationOffset(newPaginationOffset)
   }
 
