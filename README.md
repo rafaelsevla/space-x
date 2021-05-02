@@ -9,6 +9,6 @@
 - Run `flask run` to develop on `http://localhost:5000`
 
 - Enter frontend directory `cd frontend`
-- Add `.env.local` with `REACT_APP_API_URL=http://localhost:5000`
+- Add file:`.env.local` with `REACT_APP_API_URL=http://localhost:5000`
 - Install dependencies: `npm install`
 - Run `npm start` to develop on `http://localhost:3000`
