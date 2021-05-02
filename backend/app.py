@@ -1,10 +1,19 @@
 import requests
-from flask import request
-from app import app
-from app.model import launch_and_rocket_payload
+from flask import request, Flask
+from model import launch_and_rocket_payload
+from flask_cors import CORS, cross_origin
 
 
-@app.route("/launches/next", methods=["GET"])
+app = Flask(__name__)
+CORS(app)
+cors = CORS(app, resources={
+    r"/*": {
+        "origins": "*"
+    }
+})
+
+
+@app.route("/v1/launches/next", methods=["GET"])
 def next_launch():
     launch_response = requests.get("https://api.spacexdata.com/v4/launches/next").json()
     rocket_id = launch_response.get("rocket", None)
@@ -13,7 +22,7 @@ def next_launch():
     return launch_and_rocket_payload(launch_response, rocket_response), 200
 
 
-@app.route("/launches/latest", methods=["GET"])
+@app.route("/v1/launches/latest", methods=["GET"])
 def latest_launch():
     launch_response = requests.get("https://api.spacexdata.com/v4/launches/latest").json()
     rocket_id = launch_response.get("rocket", None)
@@ -22,9 +31,8 @@ def latest_launch():
     return launch_and_rocket_payload(launch_response, rocket_response), 200
 
 
-@app.route("/launches/upcoming", methods=["GET"])
+@app.route("/v1/launches/upcoming", methods=["GET"])
 def upcoming_launches():
-
     offset = request.args.get('offset', None)
     limit = request.args.get('limit', None)
     if offset == None or limit == None:
@@ -44,13 +52,12 @@ def upcoming_launches():
         launches_to_response.append(launch_and_rocket_payload(launch, rocket_response))
 
     return {
-      "launches": launches_to_response
+    "launches": launches_to_response
     }, 200
 
 
 @app.route("/launches/past", methods=["GET"])
 def past_launches():
-
     offset = request.args.get('offset', None)
     limit = request.args.get('limit', None)
     if offset == None or limit == None:
@@ -70,5 +77,5 @@ def past_launches():
         launches_to_response.append(launch_and_rocket_payload(launch, rocket_response))
 
     return {
-      "launches": launches_to_response
+    "launches": launches_to_response
     }, 200
