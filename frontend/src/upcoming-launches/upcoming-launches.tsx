@@ -31,7 +31,7 @@ export default function UpcomingLaunches () {
     try {
       setUpcomingLaunches({ status: 'loading' })
       const response: { data: { launches: Launch[] } } = await axios.get(
-        `http://localhost:5000/v1/launches/upcoming?offset=${paginationOffset}&limit=12`
+        `${process.env.REACT_APP_API_URL}/v1/launches/upcoming?offset=${paginationOffset}&limit=12`
       );
       setUpcomingLaunches({ status: 'loaded', data: response.data.launches });
     } catch (err) {

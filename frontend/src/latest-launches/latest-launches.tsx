@@ -17,7 +17,7 @@ export default function LatestLaunches () {
   useEffect(() => {
     (async () => {
       try {
-        const response: { data: Launch } = await axios.get('http://localhost:5000/v1/launches/latest');
+        const response: { data: Launch } = await axios.get(`${process.env.REACT_APP_API_URL}/v1/launches/latest`);
         setLatestLaunch({ status: 'loaded', data: response.data });
       } catch (err) {
         setLatestLaunch({ status: 'error' });
