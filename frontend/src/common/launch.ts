@@ -6,7 +6,6 @@ interface Rocket {
 }
 
 export interface Launch {
-  title: string;
   date_utc: string;
   details: string;
   flight_number: number;

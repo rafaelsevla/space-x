@@ -7,6 +7,7 @@ export const LAST_LAUNCH = '/last-launch';
 
 const HomePage = lazy(() => import('./home'));
 const LatestLaunchesPage = lazy(() => import('./latest-launches'));
+const UpcomingLaunchesPage = lazy(() => import('./upcoming-launches'));
 
 export const routes: {
   id: number;
@@ -22,15 +23,16 @@ export const routes: {
   },
   {
     id: 2,
-    title: 'LATEST LAUNCHES',
+    title: 'LATEST LAUNCHE',
     url: LATEST_LAUNCHES,
     children: LatestLaunchesPage
   },
-  // {
-  //   id: 3,
-  //   title: 'ÚLTIMO LANÇAMENTO',
-  //   url: LAST_LAUNCH
-  // },
+  {
+    id: 3,
+    title: 'UPCOMING LAUNCHES',
+    url: UPCOMING_LAUNCHES,
+    children: UpcomingLaunchesPage
+  },
   // {
   //   id: 4,
   //   title: 'ÚLTIMOS_LANÇAMENTOS',

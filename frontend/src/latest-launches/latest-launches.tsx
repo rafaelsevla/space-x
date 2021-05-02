@@ -13,11 +13,11 @@ export default function LatestLaunches () {
   function onChange (value: number) {
     setCarouselDotsValue(value);
   }
+
   useEffect(() => {
     (async () => {
       try {
         const response: { data: Launch } = await axios.get('http://localhost:5000/v1/launches/latest');
-        
         setLatestLaunch({ status: 'loaded', data: response.data });
       } catch (err) {
         setLatestLaunch({ status: 'error' });
