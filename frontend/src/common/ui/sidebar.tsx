@@ -44,7 +44,7 @@ const Sidebar = ({ title }: { title: string }) => {
       >
         <div className={classes.toolbarIcon}>
           <Button onClick={() => {}}>
-            <span>
+            <span style={{ fontWeight: 'bold', fontSize: 24 }}>
               SPACE-X
             </span>
           </Button>

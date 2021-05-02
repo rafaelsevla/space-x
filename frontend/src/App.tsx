@@ -1,7 +1,7 @@
+import '@brainhubeu/react-carousel/lib/style.css';
 import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { LinearProgress } from '@material-ui/core';
-import Base from './common/ui/base';
 import { routes } from './routes';
 
 
