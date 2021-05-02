@@ -32,7 +32,7 @@ export default function PastLaunches () {
     try {
       setPastLaunches({ status: 'loading' });
       const response: { data: { launches: Launch[] } } = await axios.get(
-        `http://localhost:5000/v1/launches/past?offset=${offset}&limit=10`
+        `http://localhost:5000/v1/launches/past?offset=${offset}&limit=12`
       );
       setPastLaunches({ status: 'loaded', data: response.data.launches });
     } catch (err) {
@@ -41,16 +41,18 @@ export default function PastLaunches () {
   }
 
   useEffect(() => {
-    fetchPastLaunches(0);
+    fetchPastLaunches(paginationOffset);
   }, []);
 
   function onPagination (action: 'next' | 'previous') {
-    if ('next') {
-      fetchPastLaunches(paginationOffset + 10);
+    let newPaginationOffset;
+    if (action === 'next') {
+      newPaginationOffset = paginationOffset + 10;
+    } else { // previous pagination
+      newPaginationOffset = paginationOffset - 10;
     }
-    if ('previous') {
-      fetchPastLaunches(paginationOffset - 10);
-    }
+    fetchPastLaunches(newPaginationOffset);
+    setPaginationOffset(newPaginationOffset)
   }
 
   return (
@@ -58,6 +60,11 @@ export default function PastLaunches () {
       {pastLaunches.status === 'loaded' && (
         <>
           <Grid container item xs={12} spacing={3}>
+            {pastLaunches.data.length === 0 && (
+              <Typography variant='h4'>
+                There is no more release available
+              </Typography>
+            )}
             {pastLaunches.data.map(launch => (
               <Grid item xs={4}>
                 <Card className={classes.root}>
@@ -101,6 +108,7 @@ export default function PastLaunches () {
                 variant="contained"
                 color="primary"
                 onClick={() => onPagination('next')}
+                disabled={pastLaunches.data.length === 0}
               >
                 NEXT PAGE
               </Button>
