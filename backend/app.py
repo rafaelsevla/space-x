@@ -52,11 +52,11 @@ def upcoming_launches():
         launches_to_response.append(launch_and_rocket_payload(launch, rocket_response))
 
     return {
-    "launches": launches_to_response
+        "launches": launches_to_response
     }, 200
 
 
-@app.route("/launches/past", methods=["GET"])
+@app.route("/v1/launches/past", methods=["GET"])
 def past_launches():
     offset = request.args.get('offset', None)
     limit = request.args.get('limit', None)
@@ -77,5 +77,5 @@ def past_launches():
         launches_to_response.append(launch_and_rocket_payload(launch, rocket_response))
 
     return {
-    "launches": launches_to_response
+        "launches": launches_to_response
     }, 200
