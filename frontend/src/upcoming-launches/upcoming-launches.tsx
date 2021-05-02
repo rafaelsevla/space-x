@@ -33,7 +33,6 @@ export default function UpcomingLaunches () {
       const response: { data: { launches: Launch[] } } = await axios.get(
         `http://localhost:5000/v1/launches/upcoming?offset=${paginationOffset}&limit=12`
       );
-      console.log('paginationOffset', paginationOffset, response.data.launches)
       setUpcomingLaunches({ status: 'loaded', data: response.data.launches });
     } catch (err) {
       setUpcomingLaunches({ status: 'error' });
