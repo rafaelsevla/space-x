@@ -19,26 +19,26 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function UpcomingLaunches () {
+export default function PastLaunches () {
   const classes = useStyles();
-  const [ upcomingLaunches, setUpcomingLaunches ] = useState<AsyncData<Launch[]>>({ status: 'loading' });
+  const [ pastLaunches, setPastLaunches ] = useState<AsyncData<Launch[]>>({ status: 'loading' });
 
   useEffect(() => {
     (async () => {
       try {
-        const response: { data: { launches: Launch[] } } = await axios.get('http://localhost:5000/v1/launches/upcoming?offset=0&limit=10');
-        setUpcomingLaunches({ status: 'loaded', data: response.data.launches });
+        const response: { data: { launches: Launch[] } } = await axios.get('http://localhost:5000/v1/launches/past?offset=0&limit=10');
+        setPastLaunches({ status: 'loaded', data: response.data.launches });
       } catch (err) {
-        setUpcomingLaunches({ status: 'error' });
+        setPastLaunches({ status: 'error' });
       }
     })();
   }, []);
 
   return (
-    <Base title='UPCOMING LAUNCHES' data={upcomingLaunches}>
-      {upcomingLaunches.status === 'loaded' && (
+    <Base title='PAST LAUNCHES' data={pastLaunches}>
+      {pastLaunches.status === 'loaded' && (
         <Grid container item xs={12} spacing={3}>
-          {upcomingLaunches.data.map(launch => (
+          {pastLaunches.data.map(launch => (
             <Grid item xs={4}>
               <Card className={classes.root}>
                 <CardHeader
@@ -56,7 +56,7 @@ export default function UpcomingLaunches () {
                 />
                 <CardContent>
                   <Typography variant="body2" color="textSecondary" component="p">
-                   {launch.details || 'Description coming soon...'}
+                   {launch.details || 'Description unavailable.'}
                   </Typography>
                 </CardContent>
               </Card>

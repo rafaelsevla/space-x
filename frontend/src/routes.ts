@@ -3,11 +3,12 @@ import { lazy } from 'react';
 export const HOME = '/';
 export const LATEST_LAUNCHES = '/latest-launches';
 export const UPCOMING_LAUNCHES = '/upcoming-launches';
-export const LAST_LAUNCH = '/last-launch';
+export const PAST_LAUNCHES = '/past-launch';
 
 const HomePage = lazy(() => import('./home'));
 const LatestLaunchesPage = lazy(() => import('./latest-launches'));
 const UpcomingLaunchesPage = lazy(() => import('./upcoming-launches'));
+const PastLaunchesPage = lazy(() => import('./past-launches'));
 
 export const routes: {
   id: number;
@@ -33,9 +34,10 @@ export const routes: {
     url: UPCOMING_LAUNCHES,
     children: UpcomingLaunchesPage
   },
-  // {
-  //   id: 4,
-  //   title: 'ÚLTIMOS_LANÇAMENTOS',
-  //   url: LATEST_LAUNCHES
-  // },
+  {
+    id: 4,
+    title: 'PAST LAUNCHES',
+    url: PAST_LAUNCHES,
+    children: PastLaunchesPage
+  },
 ]

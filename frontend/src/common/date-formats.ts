@@ -12,7 +12,6 @@ export function getFormatedTime (date: string) {
     .toLocaleString("en", { hour: 'numeric', minute: 'numeric' });
 }
 
-
 export function getFormatedDateWithYear (date: string) {
   return new Date(getDateWithTimezone(date))
     .toLocaleString("en", { day: 'numeric', month: 'long', year: 'numeric'  });

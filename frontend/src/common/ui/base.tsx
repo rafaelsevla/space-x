@@ -21,7 +21,7 @@ const Base = ({ children, title, data }: PropsWithChildren<Props>) => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth='lg' className={classes.container}>
           {data.status === 'loading' && <LinearProgress />}
-          {data.status === 'error' && <h1>Um erro aconteceu ao carregar, tente novamente.</h1>}
+          {data.status === 'error' && <h1>An error occurred while loading, please try again.</h1>}
           {data.status === 'loaded' && (
             <>
               {children}
