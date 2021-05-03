@@ -24,7 +24,7 @@ export const routes: {
   },
   {
     id: 2,
-    title: 'LATEST LAUNCHE',
+    title: 'LATEST LAUNCH',
     url: LATEST_LAUNCHES,
     children: LatestLaunchesPage
   },
