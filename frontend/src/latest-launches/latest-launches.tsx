@@ -5,7 +5,6 @@ import Carousel, { Dots } from '@brainhubeu/react-carousel';
 
 import { AsyncData, Launch, getFormatedDate, getFormatedTime } from 'common';
 import Base from 'common/ui/base';
-import classes from '*.module.css';
 
 
 const useStyles = makeStyles(() => ({
