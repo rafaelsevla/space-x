@@ -1,6 +1,6 @@
 import requests
 from flask import request, Flask
-from model import launch_and_rocket_payload
+from serializer import launch_and_rocket_payload, launch_limited_list
 from flask_cors import CORS, cross_origin
 
 
@@ -38,22 +38,10 @@ def upcoming_launches():
     if offset == None or limit == None:
         return 'Limit and offset are required', 400
     
-    offset = int(offset)
-    limit = int(limit)
-
     launches = requests.get("https://api.spacexdata.com/v4/launches/upcoming").json()
+    launches_to_response = launch_limited_list(offset, limit, launches)
 
-    launches_to_response = []
-    print(launches_to_response)
-
-    for launch in launches[offset:offset+limit]:
-        rocket_id = launch.get("rocket", None)
-        rocket_response = requests.get(f"https://api.spacexdata.com/v4/rockets/{rocket_id}").json()
-        launches_to_response.append(launch_and_rocket_payload(launch, rocket_response))
-
-    return {
-        "launches": launches_to_response
-    }, 200
+    return { "launches": launches_to_response }, 200
 
 
 @app.route("/v1/launches/past", methods=["GET"])
@@ -63,19 +51,7 @@ def past_launches():
     if offset == None or limit == None:
         return 'Limit and offset are required', 400
     
-    offset = int(offset)
-    limit = int(limit)
-
     launches = requests.get("https://api.spacexdata.com/v4/launches/past").json()
+    launches_to_response = launch_limited_list(offset, limit, launches)
 
-    launches_to_response = []
-    print(launches_to_response)
-
-    for launch in launches[offset:offset+limit]:
-        rocket_id = launch.get("rocket", None)
-        rocket_response = requests.get(f"https://api.spacexdata.com/v4/rockets/{rocket_id}").json()
-        launches_to_response.append(launch_and_rocket_payload(launch, rocket_response))
-
-    return {
-        "launches": launches_to_response
-    }, 200
+    return { "launches": launches_to_response }, 200
