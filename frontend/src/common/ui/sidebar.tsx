@@ -9,11 +9,12 @@ import {
   ListItem,
   ListItemText
 } from '@material-ui/core';
-import clsx from 'clsx';
-import { useStyles } from './styles';
-import { routes } from '../../routes';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+import { useHistory } from 'react-router';
+
+import { useStyles } from './styles';
+import { routes } from 'routes';
 
 
 const Sidebar = ({ title }: { title: string }) => {
@@ -44,7 +45,7 @@ const Sidebar = ({ title }: { title: string }) => {
       >
         <div className={classes.toolbarIcon}>
           <Button onClick={() => {}}>
-            <span style={{ fontWeight: 'bold', fontSize: 24 }}>
+            <span className={classes.siteTitle}>
               SPACE-X
             </span>
           </Button>

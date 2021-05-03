@@ -3,8 +3,8 @@ import axios from 'axios';
 import { Avatar, Button, Card, CardContent, CardHeader, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 
-import Base from '../common/ui/base';
-import { AsyncData, Launch, getFormatedDateWithYear } from '../common';
+import Base from 'common/ui/base';
+import { AsyncData, Launch, getFormatedDateWithYear } from 'common';
 
 const useStyles = makeStyles(() => ({
   root: {

@@ -56,5 +56,9 @@ export const useStyles = makeStyles(theme => ({
   },
   fixedHeight: {
     height: 240
+  },
+  siteTitle: {
+    fontWeight: 'bold',
+    fontSize: 24
   }
 }));

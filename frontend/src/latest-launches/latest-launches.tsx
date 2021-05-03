@@ -1,12 +1,26 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import axios from 'axios';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 
-import { AsyncData, Launch, getFormatedDate, getFormatedTime } from '../common';
-import Base from '../common/ui/base';
+import { AsyncData, Launch, getFormatedDate, getFormatedTime } from 'common';
+import Base from 'common/ui/base';
+import classes from '*.module.css';
+
+
+const useStyles = makeStyles(() => ({
+  media: {
+    width: 500,
+    marginRight: 200
+  },
+  imagePreview: {
+    width: 100
+  }
+}));
+
 
 export default function LatestLaunches () {
+  const classes = useStyles();
   const [ latestLaunch, setLatestLaunch ] = useState<AsyncData<Launch>>({ status: 'loading' });
   const [ carouselDotsValue, setCarouselDotsValue] = useState(0);
 
@@ -59,7 +73,7 @@ export default function LatestLaunches () {
             >
             {latestLaunch.data.rocket.flickr_images.map(imageUrl => (
               <Grid item xs={4}>
-                <img src={imageUrl} style={{ width: 500, marginRight: 200 }} alt="Rocket from space-x" />
+                <img src={imageUrl} className={classes.media} alt="Rocket from space-x" />
               </Grid>
             ))}
             </Carousel>
@@ -68,7 +82,7 @@ export default function LatestLaunches () {
                 value={carouselDotsValue}
                 onChange={onChange}
                 thumbnails={latestLaunch.data.rocket.flickr_images.map(imageUrl => (
-                  <img src={imageUrl} style={{ width: 100 }} alt="Rocket from space-x on thumbnail" />
+                  <img src={imageUrl} className={classes.imagePreview} alt="Rocket from space-x on thumbnail" />
                 ))}
               />
             </Grid>

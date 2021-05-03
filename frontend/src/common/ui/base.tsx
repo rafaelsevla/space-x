@@ -2,8 +2,9 @@ import React, { PropsWithChildren } from 'react'
 import t from 'prop-types'
 import { Container, CssBaseline, LinearProgress } from '@material-ui/core'
 import Sidebar from './sidebar'
-import { useStyles } from './styles'
+
 import { AsyncData } from 'common/async-data'
+import { useStyles } from './styles'
 
 interface Props {
   title: string;
